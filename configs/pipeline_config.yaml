@@ -1,0 +1,114 @@
+# Pipeline Configuration for Food Spoilage Detection System
+# This configuration orchestrates the two-stage detection and classification pipeline
+# Stage 1: YOLO detects food items
+# Stage 2: ResNet classifies detected items as fresh or spoiled
+
+# Model Paths
+models:
+  yolo:
+    path: models/yolo_best.pt          # YOLO detection model
+    type: yolov8n                       # Model type/variant
+  resnet:
+    path: models/resnet_spoilage.pt    # ResNet classification model
+    architecture: resnet50              # ResNet architecture
+
+# YOLO Detection Configuration
+yolo_detection:
+  confidence_threshold: 0.40            # Minimum confidence for detections
+  iou_threshold: 0.45                   # IoU threshold for NMS
+  max_detections: 100                   # Maximum number of detections per image
+  image_size: 640                       # Input image size
+  classes: null                         # Specific classes to detect (null = all)
+  agnostic_nms: false                   # Class-agnostic NMS
+  device: cpu                           # Device (cuda/cpu)
+
+# ResNet Classification Configuration
+resnet_classification:
+  image_size: 224                       # Input image size for ResNet
+  confidence_threshold: 0.5             # Minimum confidence for classification
+  device: cpu                           # Device (cuda/cpu)
+  batch_size: 8                         # Batch size for processing multiple crops
+  normalize:
+    mean: [0.485, 0.456, 0.406]        # ImageNet normalization mean
+    std: [0.229, 0.224, 0.225]         # ImageNet normalization std
+  class_labels:
+    0: fresh
+    1: spoiled
+
+# Pipeline Processing Settings
+pipeline:
+  mode: sequential                      # Processing mode (sequential/parallel)
+  crop_padding: 10                      # Padding pixels when cropping detections
+  min_crop_size: 50                     # Minimum crop size in pixels
+  save_intermediate: false              # Save intermediate results
+  skip_low_confidence: true             # Skip ResNet for low YOLO confidence
+
+# Output Configuration
+output:
+  save_results: true                    # Save detection results
+  save_dir: results/pipeline_output     # Output directory
+  save_crops: false                     # Save cropped detected regions
+  save_labels: true                     # Save prediction labels
+  save_visualization: true              # Save annotated images
+  visualization:
+    bbox_thickness: 2                   # Bounding box line thickness
+    font_scale: 0.6                     # Font scale for labels
+    colors:
+      fresh: [0, 255, 0]               # Green for fresh items (BGR)
+      spoiled: [0, 0, 255]             # Red for spoiled items (BGR)
+      detection: [255, 0, 0]           # Blue for detection boxes (BGR)
+
+# Performance Settings
+performance:
+  use_half_precision: false             # Use FP16 for faster inference
+  batch_inference: true                 # Batch multiple detections
+  max_batch_size: 16                    # Maximum batch size
+  num_workers: 4                        # Number of data loading workers
+  pin_memory: true                      # Pin memory for faster transfer
+
+# Logging Configuration
+logging:
+  enabled: true                         # Enable logging
+  level: INFO                           # Logging level (DEBUG, INFO, WARNING, ERROR)
+  log_dir: logs/pipeline_logs           # Log directory
+  log_file: pipeline.log                # Log file name
+  console_output: true                  # Print to console
+
+# API/Deployment Settings (for deployment/app.py)
+api:
+  host: 0.0.0.0                         # API host
+  port: 8000                            # API port
+  max_image_size: 10485760              # Max upload size (10MB in bytes)
+  allowed_formats: [jpg, jpeg, png, bmp] # Allowed image formats
+  timeout: 30                           # Request timeout in seconds
+  cors_enabled: true                    # Enable CORS
+
+# Post-processing
+post_processing:
+  filter_duplicates: true               # Filter duplicate detections
+  duplicate_iou_threshold: 0.7          # IoU threshold for duplicates
+  aggregate_overlaps: false             # Aggregate overlapping predictions
+  confidence_boost:
+    enabled: false                      # Boost confidence based on multiple signals
+    yolo_weight: 0.4                    # Weight for YOLO confidence
+    resnet_weight: 0.6                  # Weight for ResNet confidence
+
+# Metrics and Monitoring
+metrics:
+  track_inference_time: true            # Track inference time
+  track_memory_usage: false             # Track memory usage
+  save_metrics: true                    # Save metrics to file
+  metrics_file: results/pipeline_metrics.json
+
+# Error Handling
+error_handling:
+  fallback_on_error: true               # Continue on errors
+  default_classification: unknown       # Default when classification fails
+  max_retries: 2                        # Maximum retries on failure
+
+# Debug Settings
+debug:
+  enabled: false                        # Enable debug mode
+  verbose: false                        # Verbose output
+  save_debug_images: false              # Save debug visualizations
+  profile_performance: false            # Profile performance bottlenecks

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — VegHealth AI</title>
+  <meta name="description" content="Login to VegHealth AI – Your intelligent vegetable health monitoring system" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥦</text></svg>" />
+  <link rel="stylesheet" href="/src/css/main.css" />
+</head>
+<body>
+
+<div class="auth-page">
+  <!-- Left Visual Panel -->
+  <div class="auth-visual">
+    <div class="auth-visual-content">
+      <span class="auth-visual-icon">🌿</span>
+      <h1 class="auth-visual-title">VegHealth AI</h1>
+      <p class="auth-visual-subtitle">
+        AI-powered vegetable health monitoring. Scan, analyze, and eat smarter every day.
+      </p>
+      <div class="auth-features">
+        <div class="auth-feature"><span>🔬</span><span>AI Freshness Detection</span></div>
+        <div class="auth-feature"><span>⏳</span><span>Shelf Life Estimation</span></div>
+        <div class="auth-feature"><span>🥗</span><span>Nutrition Analysis</span></div>
+        <div class="auth-feature"><span>👨‍🍳</span><span>Recipe Recommendations</span></div>
+        <div class="auth-feature"><span>💬</span><span>AI Chatbot Assistant</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Form Panel -->
+  <div class="auth-form-panel">
+    <div class="auth-form-box animate-fade-in">
+      <div class="auth-header">
+        <div class="auth-logo">
+          <div class="auth-logo-icon">🥦</div>
+          <span class="auth-logo-text">VegHealth AI</span>
+        </div>
+        <h2 class="auth-title">Welcome back</h2>
+        <p class="auth-subtitle">Sign in to your account to continue</p>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <div class="input-group">
+            <span class="input-icon">📧</span>
+            <input class="form-input" type="email" id="email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+          <div class="field-error" id="emailError" style="color:var(--danger);font-size:.78rem;margin-top:.3rem;display:none;"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div class="input-with-toggle">
+            <input class="form-input" type="password" id="password" placeholder="••••••••" autocomplete="current-password" required />
+            <button type="button" class="toggle-password" id="togglePwd">👁️</button>
+          </div>
+          <div class="field-error" id="pwdError" style="color:var(--danger);font-size:.78rem;margin-top:.3rem;display:none;"></div>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+          <label class="checkbox-group">
+            <input type="checkbox" id="rememberMe" />
+            <label for="rememberMe">Remember me</label>
+          </label>
+          <a href="#" style="font-size:.85rem;color:var(--primary);font-weight:600;">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="loginBtn">
+          <span id="loginBtnText">Sign In</span>
+          <span id="loginSpinner" style="display:none;">
+            <span class="spinner" style="width:18px;height:18px;margin-left:0.5rem;"></span>
+          </span>
+        </button>
+      </form>
+
+      <div class="divider">or</div>
+
+      <button class="btn btn-secondary btn-block" id="demoBtn">
+        🚀 Try Demo Account
+      </button>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="/src/pages/auth/signup.html">Create one free</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script type="module" src="/src/pages/auth/login.js"></script>
+</body>
+</html>

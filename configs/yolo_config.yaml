@@ -1,0 +1,83 @@
+# YOLO Training Configuration for Food Spoilage Detection
+# This configuration file contains all parameters for training the YOLO model
+
+# Model Configuration
+# Options: yolov8n.pt, yolov8s.pt, yolov8m.pt, yolov8l.pt, yolov8x.pt
+# n=nano (fastest), s=small, m=medium, l=large, x=extra large (most accurate)
+model: yolov8n.pt
+
+# Dataset Configuration
+data: data/yolo_dataset/data.yaml
+
+# Training Parameters
+epochs: 100              # Number of training epochs
+imgsz: 640              # Input image size (pixels)
+batch: 16               # Batch size (increased for speed - uses ~3.8GB VRAM)
+workers: 0              # Number of worker threads for data loading
+
+# Output Configuration
+project: runs/detect    # Project directory for saving results
+name: yolo_train        # Name of the training run
+
+# Device Configuration
+# device: 0             # GPU device (0, 1, 2, etc.) or 'cpu'
+                        # Uncomment and set if you want to specify device
+
+# Optimizer Settings
+optimizer: auto         # Optimizer (SGD, Adam, AdamW, auto)
+lr0: 0.01              # Initial learning rate
+lrf: 0.01              # Final learning rate (lr0 * lrf)
+momentum: 0.937        # SGD momentum/Adam beta1
+weight_decay: 0.0005   # Optimizer weight decay
+
+# Learning Rate Scheduler
+warmup_epochs: 3.0     # Warmup epochs (fractions ok)
+warmup_momentum: 0.8   # Warmup initial momentum
+cos_lr: False          # Use cosine learning rate scheduler
+
+# Loss Function Weights
+box: 7.5               # Box loss gain
+cls: 0.5               # Class loss gain
+dfl: 1.5               # DFL loss gain
+
+# Data Augmentation
+# Color augmentation
+hsv_h: 0.015           # HSV-Hue augmentation (fraction)
+hsv_s: 0.7             # HSV-Saturation augmentation (fraction)
+hsv_v: 0.4             # HSV-Value augmentation (fraction)
+
+# Geometric augmentation
+degrees: 0.0           # Image rotation (+/- deg)
+translate: 0.1         # Image translation (+/- fraction)
+scale: 0.5             # Image scale (+/- gain)
+shear: 0.0             # Image shear (+/- deg)
+perspective: 0.0       # Image perspective (+/- fraction)
+flipud: 0.0            # Image flip up-down (probability)
+fliplr: 0.5            # Image flip left-right (probability)
+
+# Advanced augmentation
+mosaic: 1.0            # Mosaic augmentation (probability)
+mixup: 0.0             # MixUp augmentation (probability)
+copy_paste: 0.0        # Copy-paste augmentation (probability)
+
+# Training Settings
+patience: 50           # Epochs to wait for no observable improvement for early stopping
+save: True             # Save checkpoints
+resume: True           # Resume training from last checkpoint
+cache: disk            # Cache images to disk for faster loading (2-3x speed)
+rect: False            # Rectangular training
+augment: True          # Use data augmentation
+dropout: 0.0           # Use dropout regularization (classify train only)
+close_mosaic: 10       # Disable mosaic augmentation in last N epochs to save memory
+
+# Validation Settings
+val: True              # Validate/test during training
+plots: False           # Disable plots to save memory during training
+
+# Advanced Options
+# verbose: True        # Verbose output
+# seed: 0              # Random seed for reproducibility
+# deterministic: True  # Deterministic mode (may reduce performance)
+# single_cls: False    # Train as single-class dataset
+# image_weights: False # Use weighted image selection for training
+# multi_scale: False   # Multi-scale training (+/- 50% image size)

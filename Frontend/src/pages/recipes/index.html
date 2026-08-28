@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipes — VegHealth AI</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥦</text></svg>" />
+  <link rel="stylesheet" href="/src/css/main.css" />
+</head>
+<body>
+<div class="app-layout">
+  <div class="main-content">
+
+    <div class="page-header">
+      <h1 class="page-title">👨‍🍳 Recipe Recommendations</h1>
+      <p class="page-subtitle">Healthy vegetable-based recipes curated by AI</p>
+    </div>
+
+    <!-- Search & Filter -->
+    <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:1.5rem;">
+      <div class="search-bar" style="flex:1;min-width:220px;margin-bottom:0;">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search recipes or vegetables…" />
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;" id="filterChips">
+        <button class="chip active" data-cat="all" style="border-color:var(--primary);color:var(--primary);">All</button>
+        <button class="chip" data-cat="salad">🥗 Salad</button>
+        <button class="chip" data-cat="soup">🍲 Soup</button>
+        <button class="chip" data-cat="stir-fry">🥘 Stir Fry</button>
+        <button class="chip" data-cat="curry">🍛 Curry</button>
+        <button class="chip" data-cat="snack">🥙 Snack</button>
+        <button class="chip" data-cat="smoothie">🥤 Smoothie</button>
+      </div>
+    </div>
+
+    <!-- Recipe Grid -->
+    <div class="grid-3" id="recipeGrid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin-bottom:1.5rem;"></div>
+
+    <div id="noRecipes" style="display:none;text-align:center;padding:3rem;color:var(--text-muted);">
+      <div style="font-size:3rem;margin-bottom:1rem;">🥗</div>
+      <div style="font-weight:600;">No recipes found</div>
+      <div style="font-size:0.85rem;margin-top:0.4rem;">Try a different search term or category</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Recipe Detail Modal -->
+<div class="modal-overlay" id="recipeModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Recipe Name</div>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script type="module" src="/src/pages/recipes/recipes.js"></script>
+</body>
+</html>

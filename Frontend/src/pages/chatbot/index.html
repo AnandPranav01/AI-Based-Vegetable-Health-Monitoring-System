@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Chatbot — VegHealth AI</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥦</text></svg>" />
+  <link rel="stylesheet" href="/src/css/main.css" />
+</head>
+<body>
+<div class="app-layout">
+  <div class="main-content" style="display:flex;flex-direction:column;">
+
+    <div class="page-header">
+      <h1 class="page-title">💬 AI Chatbot Assistant</h1>
+      <p class="page-subtitle">Ask anything about vegetable health, nutrition, and storage</p>
+    </div>
+
+    <div class="chat-container" style="flex:1;">
+      <div class="chat-messages" id="chatMessages">
+        <!-- Welcome message injected via JS -->
+      </div>
+
+      <div class="chat-input-area">
+        <div class="quick-chips" id="quickChips">
+          <span class="chip" data-msg="Is this tomato fresh?">🍅 Is this tomato fresh?</span>
+          <span class="chip" data-msg="How to store carrots?">🥕 How to store carrots?</span>
+          <span class="chip" data-msg="What is shelf life of spinach?">🥬 Spinach shelf life?</span>
+          <span class="chip" data-msg="Tell me a healthy recipe with broccoli">🥦 Broccoli recipe?</span>
+          <span class="chip" data-msg="What nutrition does potato have?">🥔 Potato nutrition?</span>
+          <span class="chip" data-msg="How to check vegetable freshness?">✅ Check freshness tips?</span>
+        </div>
+        <div class="chat-input-row">
+          <textarea class="chat-input" id="chatInput" rows="1" placeholder="Ask about vegetables, nutrition, recipes…"></textarea>
+          <button class="btn btn-primary btn-icon" id="sendBtn" style="width:46px;height:46px;border-radius:12px;flex-shrink:0;" title="Send">➤</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script type="module" src="/src/pages/chatbot/chatbot.js"></script>
+</body>
+</html>

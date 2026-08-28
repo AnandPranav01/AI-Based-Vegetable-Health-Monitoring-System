@@ -1,0 +1,81 @@
+# ResNet Training Configuration for Food Spoilage Detection
+
+model:
+  architecture: resnet50
+  pretrained: true
+  num_classes: 2
+  dropout: 0.5
+
+data:
+  train_dir: data/resnet_dataset/Train
+  val_dir: data/resnet_dataset/Val
+  test_dir: data/resnet_dataset/Test
+  image_size: 224
+  num_workers: 4            # was 2 — more CPU threads feeding GPU
+
+training:
+  epochs: 50
+  batch_size: 32          # was 8 — 4x fewer steps per epoch, much faster
+  learning_rate: 0.0005
+  weight_decay: 0.0001
+  momentum: 0.9
+
+optimizer:
+  type: Adam
+  betas: [0.9, 0.999]
+  eps: 1.0e-08
+
+scheduler:
+  type: StepLR
+  step_size: 10
+  gamma: 0.5                # Halves LR each step (was 0.1 which collapsed LR to near-zero by epoch 30)
+  patience: 5
+  min_lr: 1.0e-06
+
+augmentation:
+  random_rotation: 15
+  random_flip: true
+  color_jitter:
+    brightness: 0.2
+    contrast: 0.2
+    saturation: 0.2
+    hue: 0.05
+  random_crop: true
+  normalize:
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+
+loss:
+  type: CrossEntropyLoss
+  label_smoothing: 0.1
+
+early_stopping:
+  enabled: true
+  patience: 10
+  min_delta: 0.001
+
+checkpoint:
+  save_best_only: true
+  save_dir: models
+  save_frequency: 5
+  monitor: val_accuracy
+
+output:
+  project: runs/resnet
+  name: resnet_train
+  save_plots: true
+  verbose: true
+
+device: cuda
+seed: 42
+
+validation:
+  enabled: true
+  frequency: 1
+
+mixed_precision:
+  enabled: true
+
+gradient_clipping:
+  enabled: true
+  max_norm: 1.0

@@ -1,0 +1,17 @@
+{
+  "name": "veghealth-ai",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/login", "destination": "/src/pages/auth/login.html" },
+    { "source": "/signup", "destination": "/src/pages/auth/signup.html" },
+    { "source": "/dashboard", "destination": "/src/pages/dashboard/index.html" },
+    { "source": "/scan", "destination": "/src/pages/scan/index.html" },
+    { "source": "/results", "destination": "/src/pages/results/index.html" },
+    { "source": "/chatbot", "destination": "/src/pages/chatbot/index.html" },
+    { "source": "/diet", "destination": "/src/pages/diet/index.html" },
+    { "source": "/recipes", "destination": "/src/pages/recipes/index.html" },
+    { "source": "/storage", "destination": "/src/pages/storage/index.html" }
+  ]
+}

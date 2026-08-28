@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up — VegHealth AI</title>
+  <meta name="description" content="Create your VegHealth AI account" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥦</text></svg>" />
+  <link rel="stylesheet" href="/src/css/main.css" />
+</head>
+<body>
+
+<div class="auth-page">
+  <!-- Left Visual -->
+  <div class="auth-visual">
+    <div class="auth-visual-content">
+      <span class="auth-visual-icon">🥕</span>
+      <h1 class="auth-visual-title">Join VegHealth AI</h1>
+      <p class="auth-visual-subtitle">
+        Start monitoring your vegetable health with AI precision. Free forever.
+      </p>
+      <div class="auth-features">
+        <div class="auth-feature"><span>📷</span><span>Camera & Gallery Upload</span></div>
+        <div class="auth-feature"><span>🛡️</span><span>Safety Warnings</span></div>
+        <div class="auth-feature"><span>🍽️</span><span>Diet Planning</span></div>
+        <div class="auth-feature"><span>📦</span><span>Storage Tips</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Form -->
+  <div class="auth-form-panel">
+    <div class="auth-form-box animate-fade-in">
+      <div class="auth-header">
+        <div class="auth-logo">
+          <div class="auth-logo-icon">🥦</div>
+          <span class="auth-logo-text">VegHealth AI</span>
+        </div>
+        <h2 class="auth-title">Create account</h2>
+        <p class="auth-subtitle">Get started with free AI vegetable analysis</p>
+      </div>
+
+      <form id="signupForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="name">Full Name</label>
+          <div class="input-group">
+            <span class="input-icon">👤</span>
+            <input class="form-input" type="text" id="name" placeholder="John Doe" autocomplete="name" required />
+          </div>
+          <div id="nameError" style="color:var(--danger);font-size:.78rem;margin-top:.3rem;display:none;"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <div class="input-group">
+            <span class="input-icon">📧</span>
+            <input class="form-input" type="email" id="email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+          <div id="emailError" style="color:var(--danger);font-size:.78rem;margin-top:.3rem;display:none;"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div class="input-with-toggle">
+            <input class="form-input" type="password" id="password" placeholder="Min 8 characters" autocomplete="new-password" required />
+            <button type="button" class="toggle-password" id="togglePwd">👁️</button>
+          </div>
+          <div class="strength-bar-container" id="strengthContainer" style="display:none;">
+            <div class="strength-label" id="strengthLabel">Password strength</div>
+            <div class="strength-segments" id="strengthSegments">
+              <div class="strength-segment" id="seg1"></div>
+              <div class="strength-segment" id="seg2"></div>
+              <div class="strength-segment" id="seg3"></div>
+              <div class="strength-segment" id="seg4"></div>
+            </div>
+          </div>
+          <div id="pwdError" style="color:var(--danger);font-size:.78rem;margin-top:.3rem;display:none;"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="confirmPassword">Confirm Password</label>
+          <div class="input-with-toggle">
+            <input class="form-input" type="password" id="confirmPassword" placeholder="Repeat your password" autocomplete="new-password" required />
+            <button type="button" class="toggle-password" id="toggleConfirm">👁️</button>
+          </div>
+          <div id="confirmError" style="color:var(--danger);font-size:.78rem;margin-top:.3rem;display:none;"></div>
+        </div>
+
+        <label class="checkbox-group" style="margin-bottom:1.5rem;">
+          <input type="checkbox" id="terms" required />
+          <label for="terms">I agree to the <a href="#" style="color:var(--primary);">Terms of Service</a> and <a href="#" style="color:var(--primary);">Privacy Policy</a></label>
+        </label>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="signupBtn">
+          <span id="signupBtnText">Create Account</span>
+          <span id="signupSpinner" style="display:none;">
+            <span class="spinner" style="width:18px;height:18px;margin-left:0.5rem;"></span>
+          </span>
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="/src/pages/auth/login.html">Sign in</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/src/pages/auth/signup.js"></script>
+</body>
+</html>

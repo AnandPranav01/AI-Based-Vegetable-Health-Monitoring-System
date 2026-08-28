@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Storage Tips — VegHealth AI</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥦</text></svg>" />
+  <link rel="stylesheet" href="/src/css/main.css" />
+</head>
+<body>
+<div class="app-layout">
+  <div class="main-content">
+
+    <div class="page-header">
+      <h1 class="page-title">📦 Vegetable Storage Tips</h1>
+      <p class="page-subtitle">Keep your vegetables fresh longer with expert storage guidance</p>
+    </div>
+
+    <!-- General Tips Banner -->
+    <div class="safety-banner safe" style="margin-bottom:1.5rem;">
+      <div class="safety-banner-icon">💡</div>
+      <div>
+        <div class="safety-banner-title">Golden Rule of Storage</div>
+        <div class="safety-banner-text">Don't wash vegetables until use. Moisture accelerates spoilage. Store ethylene producers (tomatoes, apples) separately from ethylene-sensitive produce (lettuce, broccoli).</div>
+      </div>
+    </div>
+
+    <!-- Filter Tabs + Search -->
+    <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:1.5rem;">
+      <div class="search-bar" style="flex:1;min-width:200px;margin-bottom:0;">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search vegetable…" />
+      </div>
+      <div class="tabs" style="margin-bottom:0;">
+        <button class="tab-btn active" data-filter="all">All</button>
+        <button class="tab-btn" data-filter="fridge">🌡️ Fridge</button>
+        <button class="tab-btn" data-filter="pantry">📦 Pantry</button>
+        <button class="tab-btn" data-filter="counter">🪴 Counter</button>
+      </div>
+    </div>
+
+    <!-- Storage Cards Grid -->
+    <div class="grid-3" id="storageGrid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;"></div>
+
+    <div id="noStorage" style="display:none;text-align:center;padding:3rem;color:var(--text-muted);">
+      <div style="font-size:3rem;margin-bottom:1rem;">📦</div>
+      <div style="font-weight:600;">No vegetables found</div>
+    </div>
+
+  </div>
+</div>
+<script type="module" src="/src/pages/storage/storage.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diet Planning — VegHealth AI</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥦</text></svg>" />
+  <link rel="stylesheet" href="/src/css/main.css" />
+</head>
+<body>
+<div class="app-layout">
+  <div class="main-content">
+
+    <div class="page-header">
+      <h1 class="page-title">🥗 Diet Planning</h1>
+      <p class="page-subtitle">AI-generated weekly vegetable diet plans based on your health goals</p>
+    </div>
+
+    <!-- Goal Selection -->
+    <div class="card" style="margin-bottom:1.5rem;">
+      <div class="card-title">🎯 Select Your Health Goal</div>
+      <div class="grid-4" id="goalGrid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.75rem;">
+        <div class="goal-card selected" data-goal="weightloss">
+          <div class="goal-icon">⚖️</div><div class="goal-name">Weight Loss</div>
+        </div>
+        <div class="goal-card" data-goal="immunity">
+          <div class="goal-icon">🛡️</div><div class="goal-name">Immunity Boost</div>
+        </div>
+        <div class="goal-card" data-goal="muscle">
+          <div class="goal-icon">💪</div><div class="goal-name">Muscle Gain</div>
+        </div>
+        <div class="goal-card" data-goal="diabetes">
+          <div class="goal-icon">💉</div><div class="goal-name">Diabetes Control</div>
+        </div>
+        <div class="goal-card" data-goal="heart">
+          <div class="goal-icon">❤️</div><div class="goal-name">Heart Health</div>
+        </div>
+        <div class="goal-card" data-goal="detox">
+          <div class="goal-icon">🌿</div><div class="goal-name">Detox &amp; Cleanse</div>
+        </div>
+        <div class="goal-card" data-goal="energy">
+          <div class="goal-icon">⚡</div><div class="goal-name">Energy Boost</div>
+        </div>
+        <div class="goal-card" data-goal="balanced">
+          <div class="goal-icon">🥦</div><div class="goal-name">Balanced Diet</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Goal Info Banner -->
+    <div class="safety-banner safe" id="goalBanner" style="margin-bottom:1.5rem;">
+      <div class="safety-banner-icon" id="goalBannerIcon">⚖️</div>
+      <div>
+        <div class="safety-banner-title" id="goalBannerTitle">Weight Loss Plan</div>
+        <div class="safety-banner-text" id="goalBannerText">Low-calorie, high-fiber vegetables to keep you full while reducing caloric intake.</div>
+      </div>
+    </div>
+
+    <!-- Weekly Diet Table -->
+    <div class="card" style="margin-bottom:1.5rem;overflow-x:auto;">
+      <div class="card-title" style="display:flex;align-items:center;justify-content:space-between;">
+        <span>📅 Weekly Vegetable Diet Plan</span>
+        <button class="btn btn-primary btn-sm" id="generateBtn">🔄 Regenerate</button>
+      </div>
+      <table class="diet-table" id="dietTable">
+        <thead>
+          <tr>
+            <th>Day</th><th>Breakfast</th><th>Lunch</th><th>Dinner</th><th>Snack</th>
+          </tr>
+        </thead>
+        <tbody id="dietBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Highlighted Vegetables -->
+    <div class="card">
+      <div class="card-title">⭐ Top Vegetables for your Goal</div>
+      <div class="grid-3" id="veggieHighlights" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;"></div>
+    </div>
+
+  </div>
+</div>
+<script type="module" src="/src/pages/diet/diet.js"></script>
+</body>
+</html>
